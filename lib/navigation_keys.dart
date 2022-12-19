@@ -21,27 +21,40 @@ class _NavigationKeysState extends State<NavigationKeys> {
 
   @override
   Widget build(BuildContext context) {
-    return Joystick(
-        listener: ((details) => {
-              if (details.x == 0 && details.y > 0) direction = Direction.up,
-              if (details.x == 0 && details.y < 0) direction = Direction.down,
-              if (details.x > 0 && details.y == 0) direction = Direction.right,
-              if (details.x < 0 && details.y == 0) direction = Direction.left,
-              if (details.x > 0 && details.y > 0)
-                direction = Direction.downRight,
-              if (details.x > 0 && details.y < 0) direction = Direction.upRight,
-              if (details.x < 0 && details.y > 0)
-                direction = Direction.downLeft,
-              if (details.x < 0 && details.y < 0) direction = Direction.upLeft,
-              if (details.x == 0 && details.y == 0) direction = Direction.none,
-              updateDirection(direction),
-              if (timer.isActive == true) timer.cancel(),
-              timer =
-                  Timer.periodic(const Duration(milliseconds: 200), (timer) {
-                updateDirection(Direction.none);
-                timer.cancel();
-              })
-            }));
+    return Center(
+      heightFactor: 2,
+      child: SizedBox(
+        width: 100,
+        height: 100,
+        child: Joystick(
+            listener: ((details) => {
+                  if (details.x == 0 && details.y > 0) direction = Direction.up,
+                  if (details.x == 0 && details.y < 0)
+                    direction = Direction.down,
+                  if (details.x > 0 && details.y == 0)
+                    direction = Direction.right,
+                  if (details.x < 0 && details.y == 0)
+                    direction = Direction.left,
+                  if (details.x > 0 && details.y > 0)
+                    direction = Direction.downRight,
+                  if (details.x > 0 && details.y < 0)
+                    direction = Direction.upRight,
+                  if (details.x < 0 && details.y > 0)
+                    direction = Direction.downLeft,
+                  if (details.x < 0 && details.y < 0)
+                    direction = Direction.upLeft,
+                  if (details.x == 0 && details.y == 0)
+                    direction = Direction.none,
+                  updateDirection(direction),
+                  if (timer.isActive == true) timer.cancel(),
+                  timer = Timer.periodic(const Duration(milliseconds: 200),
+                      (timer) {
+                    updateDirection(Direction.none);
+                    timer.cancel();
+                  })
+                })),
+      ),
+    );
   }
 
   void updateDirection(Direction newDirection) {
