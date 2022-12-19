@@ -43,6 +43,7 @@ dependencies:
   shared_preferences: ^2.0.15
   google_mobile_ads: ^2.3.0
   flame: ^1.5.0
+  flutter_joystick: ^0.0.2
 
 dev_dependencies:
   flutter_test:

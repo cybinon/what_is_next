@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
 
@@ -22,6 +24,7 @@ class DinoPlayer extends SpriteAnimationComponent with HasGameRef {
   @override
   void update(double dt) {
     super.update(dt);
+    inspect(position);
     updatePosition(dt);
   }
 
@@ -56,6 +59,26 @@ class DinoPlayer extends SpriteAnimationComponent with HasGameRef {
       case Direction.right:
         animation = _walkingRightAnimation;
         position.x++;
+        break;
+      case Direction.upRight:
+        animation = _walkingRightAnimation;
+        position.y--;
+        position.x++;
+        break;
+      case Direction.upLeft:
+        animation = _walkingLeftAnimation;
+        position.y--;
+        position.x--;
+        break;
+      case Direction.downRight:
+        animation = _walkingRightAnimation;
+        position.y++;
+        position.x++;
+        break;
+      case Direction.downLeft:
+        animation = _walkingLeftAnimation;
+        position.y++;
+        position.x--;
         break;
       case Direction.none:
         animation = _idleAnimation;
